@@ -36,7 +36,7 @@ fi
 
 log "6/7: Nastavujem systémovú službu tterminal..."
 SERVICE_FILE=/etc/systemd/system/tterminal.service
-sudo bash -c "cat > $SERVICE_FILE <<EOL
+sudo bash -c "cat > $SERVICE_FILE" << 'EOF'
 [Unit]
 Description=TTerminal Application
 After=network.target
@@ -44,12 +44,11 @@ After=network.target
 [Service]
 ExecStart=/usr/bin/xinit /usr/bin/python3 /opt/tterminal/main.py -- :0
 Restart=always
-User=$USER
+User=pi
 
 [Install]
 WantedBy=multi-user.target
-EOL
-"
+EOF
 
 log "Povoľujem službu tterminal..."
 sudo systemctl daemon-reload
@@ -57,4 +56,3 @@ sudo systemctl enable tterminal
 sudo systemctl start tterminal
 
 log "7/7: Inštalácia dokončená! Po reštarte sa aplikácia spustí automaticky."
-
