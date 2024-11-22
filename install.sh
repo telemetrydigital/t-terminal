@@ -54,11 +54,10 @@ After=multi-user.target
 Environment=DISPLAY=:0
 User=pi
 Group=tty
-TTYPath=/dev/tty1
-StandardInput=tty
-StandardOutput=tty
-ExecStart=/usr/bin/startx /usr/bin/python3 /opt/tterminal/main.py -- :0 vt1
+ExecStart=/usr/bin/startx /usr/bin/python3 /opt/tterminal/main.py -- :0 vt1 -keeptty
 Restart=always
+StandardInput=tty
+TTYPath=/dev/tty1
 
 [Install]
 WantedBy=graphical.target
@@ -68,8 +67,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable kiosk
 
 log "7/7: Inštalácia dokončená! Po reštarte sa kiosk mode spustí automaticky."
-
-# Ponuka na reštart
 read -p "Chcete reštartovať Raspberry Pi teraz? (y/n): " RESTART
 if [[ "$RESTART" == "y" || "$RESTART" == "Y" ]]; then
   sudo reboot
