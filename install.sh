@@ -22,7 +22,16 @@ fi
 log "4/7: Inštalujem Python závislosti..."
 sudo pip3 install -r /opt/tterminal/requirements.txt
 
-log "5/7: Nastavujem kiosk mode..."
+log "5/7: Nastavujem oprávnenia pre tty a video..."
+# Pridanie používateľa pi do potrebných skupín
+sudo usermod -aG tty pi
+sudo usermod -aG video pi
+
+# Nastavenie oprávnení pre /dev/tty0
+sudo chmod 660 /dev/tty0
+sudo chown root:tty /dev/tty0
+
+log "6/7: Nastavujem kiosk mode..."
 
 # Vytvorenie `.xinitrc` pre kiosk mode
 cat <<EOL > ~/.xinitrc
@@ -35,8 +44,7 @@ matchbox-window-manager &  # Ľahký správca okien pre kiosk mode
 EOL
 chmod +x ~/.xinitrc
 
-log "6/7: Nastavujem automatické spúšťanie Xorg..."
-# Úprava služby pre automatické spúšťanie Xorg
+# Vytvorenie služby pre kiosk mode
 sudo bash -c "cat > /etc/systemd/system/kiosk.service" << 'EOF'
 [Unit]
 Description=Kiosk Mode
@@ -45,7 +53,11 @@ After=multi-user.target
 [Service]
 Environment=DISPLAY=:0
 User=pi
-ExecStart=/usr/bin/startx
+Group=tty
+TTYPath=/dev/tty1
+StandardInput=tty
+StandardOutput=tty
+ExecStart=/usr/bin/startx /usr/bin/python3 /opt/tterminal/main.py -- :0 vt1
 Restart=always
 
 [Install]
@@ -53,7 +65,7 @@ WantedBy=graphical.target
 EOF
 
 sudo systemctl daemon-reload
-sudo systemctl enable kiosk.service
+sudo systemctl enable kiosk
 
 log "7/7: Inštalácia dokončená! Po reštarte sa kiosk mode spustí automaticky."
 
