@@ -1,28 +1,28 @@
 {
     "kiosk_url": "https://www.example.com",  // Predvolená URL pre kiosk režim
     "settings_button_timeout": 10,           // Čas v sekundách, po ktorom sa spustí kiosk režim (ak sa nestlačí tlačidlo)
-    "time_format": "HH:mm:ss",              // Predvolený formát zobrazenia času
-    "timezone": "Europe/Bratislava",        // Predvolený časový pásmo
-    "language": "en",                       // Predvolený jazyk aplikácie (napr. en, sk, ...)
+    "time_format": "HH:mm:ss",               // Predvolený formát zobrazenia času
+    "timezone": "Europe/Bratislava",         // Predvolený časový pásmo
+    "language": "en",                        // Predvolený jazyk aplikácie (napr. en, sk, ...)
     "network": {
-        "ethernet_ip": "192.168.1.100",     // Predvolená IP adresa pre Ethernet
-        "ethernet_gateway": "192.168.1.1",  // Predvolená brána pre Ethernet
-        "wifi_ssid": "",                    // Predvolená SSID pre WiFi
-        "wifi_password": "",                // Predvolené heslo pre WiFi
-        "can_baudrate": 500000,             // Predvolená rýchlosť pre CAN rozhranie
-        "can_address": 1                    // Predvolená adresa pre CAN rozhranie
+        "ethernet_ip": "192.168.1.100",      // Predvolená IP adresa pre Ethernet
+        "ethernet_gateway": "192.168.1.1",   // Predvolená brána pre Ethernet
+        "wifi_ssid": "",                     // Predvolená SSID pre WiFi
+        "wifi_password": "",                 // Predvolené heslo pre WiFi
+        "can_baudrate": 500000,              // Predvolená rýchlosť pre CAN rozhranie
+        "can_address": 1                     // Predvolená adresa pre CAN rozhranie
     },
     "display": {
-        "resolution": "800x480",            // Predvolené rozlíšenie displeja
-        "rotation": 0,                      // Predvolená rotácia obrazovky (0 - žiadna, 90, 180, 270)
-        "hide_cursor": false                // Zobrazenie kurzora (true - skrytý, false - zobrazený)
+        "resolution": "800x480",             // Predvolené rozlíšenie displeja
+        "rotation": 0,                       // Predvolená rotácia obrazovky (0 - žiadna, 90, 180, 270)
+        "hide_cursor": false                 // Zobrazenie kurzora (true - skrytý, false - zobrazený)
     },
     "vpn": {
-        "wireguard_peer": "peer1",          // Predvolený peer pre WireGuard VPN
-        "wireguard_address": "10.0.0.2"     // Predvolená IP adresa pre WireGuard VPN
+        "wireguard_peer": "peer1",           // Predvolený peer pre WireGuard VPN
+        "wireguard_address": "10.0.0.2"      // Predvolená IP adresa pre WireGuard VPN
     },
     "system": {
-        "shutdown_time": 1800,              // Predvolený čas (v sekundách) na vypnutie systému, ak nie je použitý
+        "shutdown_time": 1800,               // Predvolený čas (v sekundách) na vypnutie systému, ak nie je použitý
         "auto_restart": true                 // Ak je nastavené na true, systém sa automaticky reštartuje po páde aplikácie
     }
 }
